@@ -1,0 +1,34 @@
+1. refactor the following route
+ - add validation;
+ - add error handling;
+ - you will need to create validation file and appropriate errors
+  find more information in samples;
+
+2. refactor the following route
+ - add validation
+ - add error handling
+
+3. refactor the following route
+ - add validation
+ - add error handling
+
+4. write this method, use hints in comments 
+ to apply it, it's pretty common and you will need
+ to do some manipulation with JSON data
+
+5. add CRUD (get, post, delete, put) commands for the services.
+ we will expand our application and add addition feature,
+ users will have different services (pizza delivery, bear delivery, etc)
+ you will need to create this functionality
+ so, I want to see CRUD for this data
+ {
+   id - service id (just like we did for user)
+   userId - each service will have user id for mapping
+   title - service`s title
+   description - service`s description
+   time - when service should be done
+ }
+ you need to create new JSON file services.json for this task, apply validation, error handling, etc
+ just like we did in users.js
+
+6. update readme
