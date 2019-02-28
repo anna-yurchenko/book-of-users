@@ -32,3 +32,9 @@
  just like we did in users.js
 
 6. update readme
+
+
+
+hints:
+ - put validation files into /validation
+ - create new folder for errors
