@@ -43,19 +43,20 @@ router.put('/editUser', function(req, res){
         if(user[i].id == id){
             currentUser.name = user[i].name;
             currentUser.city = user[i].city;
+
+            var updatedUser = req.body;
+            for(let key in currentUser){
+                if(!(key in updatedUser)){
+                    updatedUser[key] = currentUser[key];
+                }
+            }
+            user[i] = updatedUser;
         }
     }
-    let newData = req.body;
-    let updatedUser = {};
-    for (let key in currentUser){
-        if(currentUser[key] != newData[key]){
-            updatedUser[key] = newData[key]
-        }
-        else{
-            updatedUser[key] = currentUser[key]
-        }
-    }
-    return res.json(updatedUser);
+    usersJson.users = user;
+    
+    fs.writeFileSync('./db/users.json', JSON.stringify(usersJson));
+    return res.json(usersJson);
 })
 
 module.exports = router;

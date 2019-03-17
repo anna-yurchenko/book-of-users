@@ -36,4 +36,31 @@ router.delete('/:id', function(req, res){
     return res.json(servicesJson.services);
 })
 
+router.put('/editService', function(req, res){
+    const servicesJson = JSON.parse(fs.readFileSync('./db/services.json', 'utf-8'));
+    let id = req.body.id;
+    let currentService = {};
+    let service = servicesJson.services;
+    for(let i=0; i<service.length; i++){
+        if(service[i].id == id){
+            currentService.title = service[i].title;
+            currentService.userid = service[i].userid;
+            currentService.description = service[i].description;
+            currentService.time = service[i].time;
+
+            var updatedService = req.body;
+            for(let key in currentService){
+                if(!(key in updatedService)){
+                    updatedService[key] = currentService[key];
+                }
+            }
+            service[i] = updatedService;
+        }
+    }
+    servicesJson.services = service;
+    
+    fs.writeFileSync('./db/services.json', JSON.stringify(servicesJson));
+    return res.json(servicesJson);
+})
+
 module.exports = router;
