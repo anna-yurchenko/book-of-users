@@ -3,7 +3,11 @@ const fs = require('fs');
 
 const router = express.Router();
 
+const validateCreateUser = require('../validation/validateUsersPost');
+
 router.post('/createNewUser', function(req, res){
+    validateCreateUser(req.body);
+
     const usersJson = JSON.parse(fs.readFileSync('./db/users.json', 'utf-8'))
     let users = usersJson.users;
 
